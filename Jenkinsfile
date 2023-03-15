@@ -4,7 +4,7 @@ pipeline{
         stage("Checkout SCM"){
             steps{
                 git url: "https://github.com/Ubaid004/CICD-Argocd.git" ,branch: 'dev'
-            }          
+            }
         }
         stage("build"){
             script {
@@ -19,7 +19,7 @@ pipeline{
                         docker login -u ubaid004 -p {dockerhubCredentials}
                         docker tag cicd-argocd ubaid004/cicd-argocd:cicd-argocd
                         docker push ubaid004/cicd-argocd:cicd-argocd
-                        '''  
+                        '''
                     }
 
                 }
@@ -28,3 +28,6 @@ pipeline{
     }
 }
 
+~                                                                                                                                                                                   
+~                                                                                                                                                                                   
+~                  
