@@ -10,7 +10,9 @@ required_version = ">= 1.2.0"
 
 provider "aws" {
   region = var.aws_region
-}resource "aws_lb" "terra-lb" {
+}
+
+resource "aws_lb" "terra-lb" {
         name  = var.lb_name
         internal = var.lb_internal
         load_balancer_type = var.lb_load_balancer_type
@@ -41,6 +43,15 @@ resource "aws_lb_listener" "this" {
   }
 }
 
+resource "aws_s3_bucket_object" "object"{
+        for_each= fileset("html/","*")
+        bucket= aws_s3_bucket.my-s3-bucket.id
+        key= each.value
+        source= "html/${each.value}"
+        etag= filemd5("html/${each.value}")
+        content_type= "text/html"
+
+}
 
 resource "aws_s3_bucket" "my-s3-bucket" {
   bucket_prefix = var.bucket_prefix
