@@ -27,8 +27,35 @@ variable "versioning" {
 variable "acl" {
     type        = string
     description = " Defaults to private "
-    default     = "private"
+    default     = "private"  
 }
+
+# Load Balancer
+
+variable "lb_protocol" {
+        description = "lb_protocol HTTP (ALB) or TCP (NLB)"
+        type        = string
+        default     = "HTTP"
+}
+
+variable "lb_listener_protocol" {
+        description = "lb_listener_protocol HTTP, TCP, TLS"
+        type        = string
+        default     = "HTTP"
+}
+
+variable "lb_enable_deletion_protection" {
+        description = "enable_deletion_protection true or false"
+        type        = bool
+        default     = false
+}
+
+variable "security_groups" {
+  description = "LB security groups"
+  type        = list(string)
+  default     = []
+}
+
 
 variable "vpc_cidr" {
         type= string
@@ -39,3 +66,82 @@ variable "vpc_name"{
         type= string
         default= "terra-vpc1"
 }
+
+variable "lb_name"{
+        type= string
+        default = "terra-lb"
+}
+
+variable "lb_internal"{
+        type= bool
+        default= "false"
+}
+
+
+variable "lb_load_balancer_type"{
+        type= string
+        default= "application"
+}
+
+variable "lb_subnets"{
+        type= list(string)
+        default = []
+}
+variable "lb_vpc_id" {
+        description = "vpc_id"
+        type        = string
+        default     = null
+}
+
+
+variable "lb_target_type"{
+        type= string
+        default = "instance"
+}
+
+variable "lb_target_port"{
+        type = number
+        default = "80"
+}
+
+variable "lb_listener_port" {
+        description = "lb_listener_port"variable "lb_tags" {
+        description = "Tag map for the resource"
+        type        = map(string)
+        default     = {}
+}
+
+variable "lb_target_tags_map" {
+        description = "Tag map for the LB target resources"
+        type        = map(string)
+        default     = {}
+}
+
+variable "lb_tags" {
+        description = "Tag map for the resource"
+        type        = map(string)
+        default     = {}
+}
+
+# Auto Scalling
+
+variable "max_size"{
+        default = "1"
+}
+variable "min_size"{
+        default = "1"
+}
+variable "desired_capacity"{
+        default = "1"
+}
+variable "asg_health_check_type"{
+        default = "ELB"
+}
+variable "target_group_arns"{
+        default = []
+}
+
+                                                                                                                                                                  145,0-1       Bot
+
+
+ 
