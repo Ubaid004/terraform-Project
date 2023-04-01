@@ -50,13 +50,6 @@ variable "lb_enable_deletion_protection" {
         default     = false
 }
 
-variable "security_groups" {
-  description = "LB security groups"
-  type        = list(string)
-  default     = []
-}
-
-
 variable "vpc_cidr" {
         type= string
         default= "10.0.0.0/16"
@@ -85,7 +78,7 @@ variable "lb_load_balancer_type"{
 
 variable "lb_subnets"{
         type= list(string)
-        default = []
+        default = ["subnet-08efb067b0c124552","subnet-0628aae2213d66d4a"]
 }
 variable "lb_vpc_id" {
         description = "vpc_id"
