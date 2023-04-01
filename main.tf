@@ -28,7 +28,7 @@ resource "aws_lb_target_group" "terra-lb" {
         port        = var.lb_target_port
         protocol    = var.lb_protocol
         target_type = var.lb_target_type #"ip" for ALB/NLB, "instance" for autoscalling
-        vpc_id      = var.lb_vpc_id
+        vpc_id      = aws_vpc.terra-vpc.id
         tags        = merge({ "Name" = "tg-${var.lb_name}" }, var.lb_tags)
         depends_on  = [aws_lb.terra-lb]
 }
