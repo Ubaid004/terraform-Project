@@ -31,3 +31,7 @@ resource "aws_iam_role_policy" "terra-policy" {
 })
 }
 
+resource "aws_iam_instance_profile" "EC2-profile"{
+        name = "terra-profile"
+        role = aws_iam_role.terra-role.name
+}
